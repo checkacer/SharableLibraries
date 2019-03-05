@@ -8,7 +8,9 @@ def call(String a){
    pipeline {
      stages {
        stage('in stage') {
-         echo "-----------------innnn"
+         steps {
+	   echo "-----------------innnn"
+	 }         
        }
      }
    }
