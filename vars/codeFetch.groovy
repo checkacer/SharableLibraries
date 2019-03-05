@@ -6,14 +6,30 @@ def call(String a){
      echo "-----------------bbb"
    }
    node {
-     stage("in groovy 1") {
-       echo "-----------111"
+     def mvnHome
+     def jdkHome
+     stage('Preparation') { 
+        git credentialsId: '13735461-01df-48bf-85cc-373338e73227', url: 'https://github.com/checkacer/runindockerdemo'      
+        mvnHome = tool 'mvn3.6'
+        jdkHome = tool 'jdk8'
      }
-     stage("in groovy 2") {
-       echo "-----------2222"
+     stage('Package') {
+        sh "'${mvnHome}/bin/mvn' package"
      }
-     stage("in groovy 3") {
-       echo "-----------3333"
+     def imagesName = 'registry.cn-hangzhou.aliyuncs.com/dcits/runindocker:v0.1'  
+     stage('Push') {
+         docker.build("registry.cn-hangzhou.aliyuncs.com/dcits/runindocker:v0.1",'.')
      }
-   }
+     stage('Deploy') {
+        try{
+          sh 'docker rm -f runindocker'
+        }catch(e){
+          // err message
+        }
+        docker.image(imagesName).run('-d --restart=unless-stopped -p 9091:80 --name runindocker') 
+     }
+     stage('Results') {
+        archive 'target/*.jar'
+     }
+  }
 }
