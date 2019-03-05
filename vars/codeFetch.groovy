@@ -5,4 +5,11 @@ def call(String a){
    }else{
      echo "-----------------bbb"
    }
+   pipeline {
+     stages {
+       stage('in stage') {
+         echo "-----------------innnn"
+       }
+     }
+   }
 }
