@@ -1,5 +1,5 @@
 #!groovy
-def call(){
+def call(String type){
    pipeline{
      agent any
      def mvnHome
