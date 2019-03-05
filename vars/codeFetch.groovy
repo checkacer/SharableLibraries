@@ -5,7 +5,7 @@ def call(String a){
    }else{
      echo "-----------------bbb"
    }
-   node {
+   node('10.12.4.61') {
      def mvnHome
      def jdkHome
      stage('Preparation') { 
