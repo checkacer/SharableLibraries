@@ -5,13 +5,9 @@ def call(String a){
    }else{
      echo "-----------------bbb"
    }
-   pipeline {
-     stages {
-       stage('in stage') {
-         steps {
-	   echo "-----------------innnn"
-	 }         
-       }
+   node {
+     stage("in groovy") {
+       echo "-----------iiii"
      }
    }
 }
