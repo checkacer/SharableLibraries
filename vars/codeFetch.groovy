@@ -6,8 +6,14 @@ def call(String a){
      echo "-----------------bbb"
    }
    node {
-     stage("in groovy") {
-       echo "-----------iiii"
+     stage("in groovy 1") {
+       echo "-----------111"
+     }
+     stage("in groovy 2") {
+       echo "-----------2222"
+     }
+     stage("in groovy 3") {
+       echo "-----------3333"
      }
    }
 }
