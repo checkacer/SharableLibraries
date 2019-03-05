@@ -30,6 +30,7 @@ def call(String a){
      }
      stage('Results') {
         archive 'target/*.jar'
+	junit 'target/surefire-reports/TEST-*.xml'
      }
   }
 }
